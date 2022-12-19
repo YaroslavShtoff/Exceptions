@@ -6,11 +6,25 @@ public abstract class  Driver<T extends Transport> {
     private  final String name;
     private boolean hasDrivingLicense;
     private int experience;
+    private String category;
 
-    public Driver(String name, boolean hasDrivingLicense, int experience) {
+    public Driver(String name, boolean hasDrivingLicense, int experience,String category) {
         this.name = name;
         this.hasDrivingLicense = hasDrivingLicense;
         this.experience = experience;
+        setCategory(category);
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+         if (category == null) {
+            throw new IllegalArgumentException("Необходимо указать  тип прав");
+        }
+
+        this.category = category;
     }
 
     public String getName() {
