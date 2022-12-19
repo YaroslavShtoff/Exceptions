@@ -37,6 +37,11 @@ public class Car extends Transport implements Competing {
         }
     }
 
+    @Override
+    public boolean service() {
+        return Math.random()>0.3;
+    }
+
 
     @Override
     public void pitStop() {

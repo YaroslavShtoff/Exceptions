@@ -76,10 +76,14 @@ public class Main {
         track4.stop();
         track4.printType();
 
+        service(car1, car2, car3, car4,
+                 bus1, bus2, bus3, bus4,
+                track1, track2, track3, track4);
 
-        DriverB alekhin = new DriverB(" Алехин ", true, 10);
-        DriverC petrov = new DriverC(" Петров ", true, 22);
-        DriverD kvyat = new DriverD(" Квят ", true, 14);
+
+        DriverB alekhin = new DriverB(" Алехин ", true, 10, "B" );
+        DriverC petrov = new DriverC(" Петров ", true, 22,"C");
+        DriverD kvyat = new DriverD(" Квят ", true, 14,null);
 
         alekhin.startMove(car1);
         alekhin.startMove(car1);
@@ -111,11 +115,29 @@ public class Main {
 
     private static Track generateTrack(int number) {
         return new Track("марка #" + number, "бренд #" + number, 3.6, Weight.N2);
-
     }
+
+    public static void service(Transport... transports) {
+        for (Transport transport : transports) {
+            serviceTransport(transport);
+        }
+    }
+
+        private static void serviceTransport(Transport transport) {
+            try {
+                if (!transport.service())
+                    throw new RuntimeException("Автомобиль " + transport.getBrand() + transport.getModel()
+                            + " не прошел диагностику");
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+
 
 
 }
+
 
 
 
